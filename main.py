@@ -2,12 +2,13 @@ import streamlit as st
 from streamlit_back_camera_input import back_camera_input
 from fastai.learner import load_learner
 from PIL import Image
+from pathlib import Path
 import pathlib
 import sys
-print("SYS PLATOFRM",sys.platform)
-# 🔥 Fix WindowsPath issue only if running on Linux
-if sys.platform != "win32":
-    pathlib.WindowsPath = pathlib.PosixPath  # Make WindowsPath compatible with Linux
+
+temp = pathlib.PosixPath
+pathlib.WindowsPath = pathlib.PosixPath
+
 # # Load trained FastAI model
 learn = load_learner('./model.pkl')
 
